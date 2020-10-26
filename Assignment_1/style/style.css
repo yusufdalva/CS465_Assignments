@@ -1,0 +1,46 @@
+#main-title {
+    font-family: "Roboto";
+    text-align: center;
+}
+
+html {
+    font-family: "Roboto";
+}
+
+body {
+    background-image: url("background-1.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+
+#koch-canvas {
+    display: block;
+    margin: 0 auto;
+    border: 5px solid rgb(0, 153, 230);
+}
+
+#buttons {
+    text-align: center;
+}
+
+#choices {
+    text-align: center;
+}
+
+#fractal {
+    margin-top: 10px;
+}
+
+#color-select {
+    margin-top: 10px;
+}
+
+#save-polygon {
+    margin-top: 10px;
+}
+
+#choices {
+    font-family: "Roboto";
+}

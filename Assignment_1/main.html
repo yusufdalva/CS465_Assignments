@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Koch Curve/Fractal Generator</title>
+    <link rel="icon" type="image/png" href="style/webgl-logo.png"/>
+    <script id="vertex-shader" type="x-shader/x-vertex">
+        attribute vec4 vPosition; // Attribute for vertex position
+        uniform vec4 vColor; //  Uniform variable for vertex color
+        varying vec4 fColor;
+
+        void main() {
+            fColor = vColor;
+            gl_PointSize = 4.0;
+            gl_Position = vPosition; // Default position attribute of GLSL
+        }
+    </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+        precision mediump float; // Medium precision for compatibility
+        varying vec4 fColor;
+
+        void main() {
+            gl_FragColor = fColor; // fColor passed from vertex shader to GLSL attribute for fragment color
+        }
+    </script>
+
+    <!-- Necessary imports for WebGL -->
+    <!-- webgl-utils: WebGL utilities, used for initializing a WebGLRenderingContext-->
+    <script type="text/javascript" src="../Commons/webgl-utils.js"></script>
+    <!-- initShaders: Used to connect the shaders implemented and the application-->
+    <script type="text/javascript" src="../Commons/initShaders.js"></script>
+    <!-- MV: Matrix-vector library, for easy data manipulation in buffers -->
+    <script type="text/javascript" src="../Commons/MV.js"></script>
+    <!-- The application implementation -->
+    <script type="text/javascript" src="scripts/app-utils.js"></script>
+    <script type="text/javascript" src="scripts/app.js"></script>
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <div>
+        <h1 id="main-title">Welcome to Koch Curve/Fractal Generator</h1>
+    </div>
+    <div>
+        <canvas id="koch-canvas" width="512" height="512">
+            Sorry, your browser does not support HTML5 Canvas element, check
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas">for more information.</a>
+        </canvas>
+        <br>
+        <div id="buttons">
+            <div id="koch">
+                <button id="generate-koch" class="button">Koch: Iterate All</button>
+                <button id="single-koch">Iterate Koch</button>
+            </div>
+            <div id="fractal">
+                <button id="generate-fractal">Fractal Iterate All</button>
+                <button id="single-fractal">Iterate Fractal</button>
+            </div>
+            <div id="save">
+                <button id="save-polygon">Save Shape</button> <br> <br>
+                <label for="load-polygon">Load Polygon:     </label>
+                <input type="file" id="load-polygon"><br><br>
+                <label for="load-iterate">Load Polygon and Iterate Fractal:    </label>
+                <input type="file" id="load-iterate">
+            </div>
+        </div>
+        <br>
+        <div id="choices">
+            <label for="canvas-select" id="color-label">Select Canvas Color: </label>
+            <input type="color" id="canvas-select" value="#0000ff">
+            <br>
+            <label for="line-select">Select Line Color: </label>
+            <input type="color" id="line-select" value="#0000ff">
+            <br>
+            <label for="iter-count">Number of iterations (between 1 and 5):</label>
+            <input type="number" id="iter-count" min="1" max="5" value="3">
+            <br>
+            <label for="background">Select a theme: </label>
+            <select id="background" sizs="3">
+                <option value="0">Light Blue</option>
+                <option value="1">Light-Orange</option>
+                <option value="2">Blue-Yellow</option>
+            </select>
+        </div>
+    </div>
+</body>
+</html>
